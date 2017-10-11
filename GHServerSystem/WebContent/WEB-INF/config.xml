@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<connectionPool>
+	<connection>
+		<name>oracle</name>
+		<url>jdbc:oracle:thin:@122.232.28.54:1521:thinklan</url>
+		<username>tds</username>
+		<password>tds</password>
+	</connection>
+	<ip>jlinfo.kmdns.net</ip>
+</connectionPool>

@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+.user
+{
+	position: static;
+	display: block;
+	width: 30px;
+	height: 30px;
+	background: url(../../icon/user.png);
+}
+.pasw
+{
+	position: static;
+	display: block;
+	width: 30px;
+	height: 30px;
+	background: url(../../icon/pasw.png);
+}
