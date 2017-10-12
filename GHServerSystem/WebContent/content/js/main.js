@@ -49,6 +49,14 @@ function initLayout(){
 }
 
 $(document).ready(function(){
+	
+	
+	
+	
+	
+	
+	
+	
 	initLayout();
 	$(window).resize(initLayout);
 	

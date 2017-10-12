@@ -51,8 +51,9 @@
 		change: function(root){
 			var th = this;
 			$(ducment).ready(function(){
-				$(th.link).attr("href", root + th.path);
+				$(th.link).remove();
 			})
+			th.init(root);
 		}
 	};
 	

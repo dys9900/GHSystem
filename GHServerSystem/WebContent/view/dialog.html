@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="../FrichUI/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="../FrichUI/frichUI-0.1.js" type="text/javascript"></script>
+<link href="../FrichUI/Themes/Aquamarine/frichUI.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+body, html
+{
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+</style>
+<script type="text/javascript">
+	var options = {
+		useCover: true
+	}
+	
+	$(document).ready(function(){
+		$(".frichUI_Cover").css({
+			"width": $(document).width(),
+			"height": $(document).height()
+		});
+		
+		$("#Message").click(function(){
+			
+		});
+	})
+</script>
+</head>
+<body>
+	<div style="height: 1000px;">
+		<button id="Message">弹出消息框</button>
+	</div>
+	<!-- 判断有无遮罩层, body:overflow-y:hidden; -->
+	<div class="frichUI_Cover">
+		<div class="frichUI_Dialog_Frame" style="left: 100px; top: 150px">
+			<div class="frichUI_Dialog_Title">
+				<h5 class="frichUI_Dialog_Name">
+					消息框
+				</h5>
+				<i class="frichUI_Dialog_Close"></i>
+			</div>
+			<div class="frichUI_Dialog_Content">
+				<i class="frichUI_Dialog_Info"></i>
+				<a>这是一个消息框</a>
+			</div>
+			<div class="frichUI_Dialog_Foot">
+				<a class="frichUI_Dialog_Confirm">确定</a>
+			</div>
+		</div>
+		<div class="frichUI_Dialog_Frame" style="left: 350px; top: 150px">
+			<div class="frichUI_Dialog_Title">
+				<h5 class="frichUI_Dialog_Name">
+					询问框
+				</h5>
+				<i class="frichUI_Dialog_Close"></i>
+			</div>
+			<div class="frichUI_Dialog_Content">
+				<i class="frichUI_Dialog_Help"></i>
+				<a>这是一个询问框</a>
+			</div>
+			<div class="frichUI_Dialog_Foot">
+				<a class="frichUI_Dialog_Cancle">取消</a>
+				<a class="frichUI_Dialog_No">否</a>
+				<a class="frichUI_Dialog_Yes">是</a>
+			</div>
+		</div>
+		<div class="frichUI_Dialog_Frame" style="left: 600px; top: 150px">
+			<div class="frichUI_Dialog_Title">
+				<h5 class="frichUI_Dialog_Name">
+					警告框
+				</h5>
+				<i class="frichUI_Dialog_Close"></i>
+			</div>
+			<div class="frichUI_Dialog_Content">
+				<i class="frichUI_Dialog_Warning"></i>
+				<a>这是一个警告框</a>
+			</div>
+			<div class="frichUI_Dialog_Foot">
+				<a class="frichUI_Dialog_Cancle">取消</a>
+				<a class="frichUI_Dialog_Confirm">确定</a>
+			</div>
+		</div>
+		<div class="frichUI_Dialog_Frame" style="left: 350px; top: 350px;">
+			<div class="frichUI_Dialog_Title">
+				<h5 class="frichUI_Dialog_Name">
+					成功框
+				</h5>
+				<i class="frichUI_Dialog_Close"></i>
+			</div>
+			<div class="frichUI_Dialog_Content">
+				<i class="frichUI_Dialog_Success"></i>
+				<a>这是一个成功框</a>
+			</div>
+			<div class="frichUI_Dialog_Foot">
+				<a class="frichUI_Dialog_Confirm">确定</a>
+			</div>
+		</div>
+		<div class="frichUI_Dialog_Frame" style="left: 600px; top: 350px;">
+			<div class="frichUI_Dialog_Title">
+				<h5 class="frichUI_Dialog_Name">
+					失败框
+				</h5>
+				<i class="frichUI_Dialog_Close"></i>
+			</div>
+			<div class="frichUI_Dialog_Content">
+				<i class="frichUI_Dialog_Error"></i>
+				<a>这是一个失败框</a>
+			</div>
+			<div class="frichUI_Dialog_Foot">
+				<a class="frichUI_Dialog_Confirm">确定</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
