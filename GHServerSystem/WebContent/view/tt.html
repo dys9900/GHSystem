@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="../lib/jquery/jquery-1.12.4.min.js" type="text/javascript"></script>
+<script src="../lib/FrichUI/frichUI-0.1.js" type="text/javascript"></script>
+<link href="../lib/FrichUI/Themes/Aquamarine/frichUI.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#table1
+{
+	display: block;
+	width:650px;
+	height: 270px;
+}
+#table2
+{
+	display: block;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+	//F.init("../FrichUI/");
+	
+});
+//当前999页/共999页 共99999999记录
+//已选择2-5、7、10-20
+$(document).ready(function(){
+	var s = $(".FrichUI_Table_ContentTable thead th");
+	var d = $(".FrichUI_Table_FloatHeader thead th");
+	var t = $(".FrichUI_Table_FloatTitle thead th");
+	
+	$.each(s, function(i, item){
+		$(d[i]).children("div").width($(item).children("div").width());
+		$(t[i]).children("div").width($(item).children("div").width());
+	});
+	
+	$("#table1 .FrichUI_Table_Frame").scroll(function(){
+		var fa = $(this);
+		
+		var y = fa.scrollTop();
+		var x = fa.scrollLeft();
+		
+		var Dividing = 0.4;
+		//console.log(x + ";" + y);
+		
+		var TOP = fa.children(".FrichUI_Table_FloatTitle").height();
+		var LEFT = fa.find(".FrichUI_Table_FloatColumn thead th").eq(0).width();
+		
+		var flot = fa.find(".FrichUI_Table_FloatTitle");
+		var floc = fa.find(".FrichUI_Table_FloatColumn");
+		var floh = fa.find(".FrichUI_Table_FloatHeader");
+		
+		flot.css("top", y + "px");
+		floc.css("left", x + "px");
+		floh.css({
+			"left": x + "px",
+			"top": y + "px"
+		});
+		
+		if(y > TOP * Dividing) {
+			flot.css({
+				"visibility": "visible",
+				"opacity": 1
+			});
+		}
+		else {
+			flot.css({
+				"visibility": "hidden",
+				"opacity": 0
+			});
+		}
+	
+		if(x > LEFT * Dividing) {
+			floc.css({
+				"visibility": "visible",
+				"opacity": 1
+			});
+		}
+		else {
+			floc.css({
+				"visibility": "hidden",
+				"opacity": 0
+			});
+		}
+		
+		if(y > TOP * Dividing && x > LEFT * Dividing) {
+			floh.css({
+				"visibility": "visible",
+				"opacity": 1
+			});
+		}
+		else {
+			floh.css({
+				"visibility": "hidden",
+				"opacity": 0
+			});
+		}
+	});
+	
+	$("#table1 .FrichUI_Table_DataRow").click(function(){
+		var rowName = $(this).prop("className").split(' ')[0];
+		var fd = $("#table1" + " ." + rowName);
+		var chk = $(fd).find("input[type=checkbox]");
+		if(!$(fd).hasClass("FrichUI_Table_DataRow_Select")){
+			$(fd).addClass("FrichUI_Table_DataRow_Select");
+			chk.prop("checked", true);
+		}else {
+			console.log(chk.length);
+			chk.prop("checked", false);
+			$(fd).removeClass("FrichUI_Table_DataRow_Select");	
+		}
+	});
+	
+	$("#table1 .FrichUI_Table_DataRow").hover(function(){
+		var rowName = $(this).prop("className").split(' ')[0];
+		var fd = $("#table1" + " ." + rowName);
+		$(fd).addClass("FrichUI_Table_DataRow_active");
+	},function(){
+		var rowName = $(this).prop("className").split(' ')[0];
+		var fd = $("." + rowName);
+		$(fd).removeClass("FrichUI_Table_DataRow_active");
+	});
+	
+	function hidePagination(){
+		var twid = $("#table1 .FrichUI_Table_Pagination_Frame").width();
+		if(twid < 650 ){
+			$(".FrichUI_Table_Pagination_Tips").addClass("FrichUI_Table_Pagination_Frame_hidden");
+			$("#table1 .FrichUI_Table_Pagination_Frame").find(".FrichUI_Table_Pagination_Select").css({
+				"float":"left",
+				"margin-left":"40px"
+			});
+			$("#table1 .FrichUI_Table_Pagination_Frame").find(".FrichUI_Table_Pagination_Skip").css({
+				"margin-left":"10px",
+				"float":"none"
+			});
+		}if(twid < 416){
+			$(".FrichUI_Table_Pagination_First").addClass("FrichUI_Table_Pagination_Frame_hidden");
+			$(".FrichUI_Table_Pagination_Last").addClass("FrichUI_Table_Pagination_Frame_hidden");
+			$("#table1 .FrichUI_Table_Pagination_Frame").find(".FrichUI_Table_Pagination_Select").css({
+				"margin-right":"10px",
+				"margin-left":"10px"
+			});
+		}if(twid < 360){
+			$(".FrichUI_Table_Pagination_Skip").addClass("FrichUI_Table_Pagination_Frame_hidden");
+		}if(twid < 210){
+			$(".FrichUI_Table_Pagination_Previous").addClass("FrichUI_Table_Pagination_Frame_hidden");
+			$(".FrichUI_Table_Pagination_Next").addClass("FrichUI_Table_Pagination_Frame_hidden");
+		}if(twid < 144){
+			$(".FrichUI_Table_Pagination_Page").addClass("FrichUI_Table_Pagination_Frame_hidden");
+		}
+	}
+	hidePagination();
+});
+</script>
+</head>
+<body>
+	<div id="table1">
+		<div class="FrichUI_Table_Frame">
+			<div class="FrichUI_Table_Content">
+				<table class="FrichUI_Table_ContentTable">
+					<thead>
+						<tr class="FrichUI_Table_r0 FrichUI_Table_TitleRow">
+							<th class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"></div></th>
+							<th><div class="FrichUI_Table_c1">编号</div></th>
+							<th class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">姓名</div></th>
+							<th><div class="FrichUI_Table_c3">学号</div></th>
+							<th><div class="FrichUI_Table_c4">课程名</div></th>
+							<th><div class="FrichUI_Table_c5">课程号</div></th>
+							<th><div class="FrichUI_Table_c6">考试形式</div></th>
+							<th><div class="FrichUI_Table_c7">成绩</div></th>
+							<th><div class="FrichUI_Table_c8">备注</div></th>
+							<th><div class="FrichUI_Table_c9">操作</div></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr><div  class="FrichUI_Table_List1">list1</div></tr>
+						<tr class="FrichUI_Table_r1 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">1</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">张铭峰</div></td>
+							<td><div class="FrichUI_Table_c3">16001001</div></td>
+							<td><div class="FrichUI_Table_c4">C语言程序设计</div></td>
+							<td><div class="FrichUI_Table_c5">801001</div></td>
+							<td><div class="FrichUI_Table_c6">正考</div></td>
+							<td><div class="FrichUI_Table_c7">82</div></td>
+							<td><div class="FrichUI_Table_c8"></div></td>
+							<td><div class="FrichUI_Table_c9"></div></td>
+						</tr>
+						<tr class="FrichUI_Table_r2 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">2</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">邹芯芷</div></td>
+							<td><div class="FrichUI_Table_c3">16001002</div></td>
+							<td><div class="FrichUI_Table_c4">C语言程序设计</div></td>
+							<td><div class="FrichUI_Table_c5">801001</div></td>
+							<td><div class="FrichUI_Table_c6">正考</div></td>
+							<td><div class="FrichUI_Table_c7">84</div></td>
+							<td><div class="FrichUI_Table_c8"></div></td>
+							<td><div class="FrichUI_Table_c9"></div></td>
+						</tr>
+						<tr class="FrichUI_Table_r3 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">3</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">李卓骏</div></td>
+							<td><div class="FrichUI_Table_c3">16001003</div></td>
+							<td><div class="FrichUI_Table_c4">C语言程序设计</div></td>
+							<td><div class="FrichUI_Table_c5">801001</div></td>
+							<td><div class="FrichUI_Table_c6">正考</div></td>
+							<td><div class="FrichUI_Table_c7">83</div></td>
+							<td><div class="FrichUI_Table_c8"></div></td>
+							<td><div class="FrichUI_Table_c9"></div></td>
+						</tr>
+						<tr class="FrichUI_Table_r4 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">4</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">李松岭</div></td>
+							<td><div class="FrichUI_Table_c3">16001004</div></td>
+							<td><div class="FrichUI_Table_c4">C语言程序设计</div></td>
+							<td><div class="FrichUI_Table_c5">801001</div></td>
+							<td><div class="FrichUI_Table_c6">正考</div></td>
+							<td><div class="FrichUI_Table_c7">90</div></td>
+							<td><div class="FrichUI_Table_c8"></div></td>
+							<td><div class="FrichUI_Table_c9"></div></td>
+						</tr>
+						<tr><div  class="FrichUI_Table_List2">list2</div></tr>
+						<tr class="FrichUI_Table_r5 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">5</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">陈秀</div></td>
+							<td><div class="FrichUI_Table_c3">16001005</div></td>
+							<td><div class="FrichUI_Table_c4">C语言程序设计</div></td>
+							<td><div class="FrichUI_Table_c5">801001</div></td>
+							<td><div class="FrichUI_Table_c6">正考</div></td>
+							<td><div class="FrichUI_Table_c7">65</div></td>
+							<td><div class="FrichUI_Table_c8"></div></td>
+							<td><div class="FrichUI_Table_c9"></div></td>
+						</tr>
+						<tr class="FrichUI_Table_r6 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">6</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">陈宵峰</div></td>
+							<td><div class="FrichUI_Table_c3">16001006</div></td>
+							<td><div class="FrichUI_Table_c4">C语言程序设计</div></td>
+							<td><div class="FrichUI_Table_c5">801001</div></td>
+							<td><div class="FrichUI_Table_c6">正考</div></td>
+							<td><div class="FrichUI_Table_c7">63</div></td>
+							<td><div class="FrichUI_Table_c8"></div></td>
+							<td><div class="FrichUI_Table_c9"></div></td>
+						</tr>
+						<tr class="FrichUI_Table_r7 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">7</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">朱雪玲</div></td>
+							<td><div class="FrichUI_Table_c3">16001007</div></td>
+							<td><div class="FrichUI_Table_c4">C语言程序设计</div></td>
+							<td><div class="FrichUI_Table_c5">801001</div></td>
+							<td><div class="FrichUI_Table_c6">正考</div></td>
+							<td><div class="FrichUI_Table_c7">79</div></td>
+							<td><div class="FrichUI_Table_c8"></div></td>
+							<td><div class="FrichUI_Table_c9"></div></td>
+						</tr>
+						<tr class="FrichUI_Table_r8 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">8</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">马敏湘</div></td>
+							<td><div class="FrichUI_Table_c3">16001008</div></td>
+							<td><div class="FrichUI_Table_c4">C语言程序设计</div></td>
+							<td><div class="FrichUI_Table_c5">801001</div></td>
+							<td><div class="FrichUI_Table_c6">正考</div></td>
+							<td><div class="FrichUI_Table_c7">73</div></td>
+							<td><div class="FrichUI_Table_c8"></div></td>
+							<td><div class="FrichUI_Table_c9"></div></td>
+						</tr>
+						<tr><div  class="FrichUI_Table_List3">list3</div></tr>
+						<tr class="FrichUI_Table_r9 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">9</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">潘仪</div></td>
+							<td><div class="FrichUI_Table_c3">16001009</div></td>
+							<td><div class="FrichUI_Table_c4">C语言程序设计</div></td>
+							<td><div class="FrichUI_Table_c5">801001</div></td>
+							<td><div class="FrichUI_Table_c6">正考</div></td>
+							<td><div class="FrichUI_Table_c7">80</div></td>
+							<td><div class="FrichUI_Table_c8"></div></td>
+							<td><div class="FrichUI_Table_c9"></div></td>
+						</tr>
+						<tr class="FrichUI_Table_r10 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">10</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">傅利生</div></td>
+							<td><div class="FrichUI_Table_c3">16001010</div></td>
+							<td><div class="FrichUI_Table_c4">C语言程序设计</div></td>
+							<td><div class="FrichUI_Table_c5">801001</div></td>
+							<td><div class="FrichUI_Table_c6">正考</div></td>
+							<td><div class="FrichUI_Table_c7">88</div></td>
+							<td><div class="FrichUI_Table_c8"></div></td>
+							<td><div class="FrichUI_Table_c9"></div></td>
+						</tr>
+						<tr class="FrichUI_Table_r11 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">11</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">李媛</div></td>
+							<td><div class="FrichUI_Table_c3">16001011</div></td>
+							<td><div class="FrichUI_Table_c4">C语言程序设计</div></td>
+							<td><div class="FrichUI_Table_c5">801001</div></td>
+							<td><div class="FrichUI_Table_c6">正考</div></td>
+							<td><div class="FrichUI_Table_c7">81</div></td>
+							<td><div class="FrichUI_Table_c8"></div></td>
+							<td><div class="FrichUI_Table_c9"></div></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="FrichUI_Table_FloatTitle">
+				<table class="FrichUI_Table_TitleTable">
+					<thead>
+						<tr class="FrichUI_Table_r0 FrichUI_Table_TitleRow">
+							<th class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"></div></th>
+							<th><div class="FrichUI_Table_c1">编号</div></th>
+							<th class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">姓名</div></th>
+							<th><div class="FrichUI_Table_c3">学号</div></th>
+							<th><div class="FrichUI_Table_c4">课程名</div></th>
+							<th><div class="FrichUI_Table_c5">课程号</div></th>
+							<th><div class="FrichUI_Table_c6">考试形式</div></th>
+							<th><div class="FrichUI_Table_c7">成绩</div></th>
+							<th><div class="FrichUI_Table_c8">备注</div></th>
+							<th><div class="FrichUI_Table_c9">操作</div></th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div class="FrichUI_Table_FloatColumn">
+				<table class="FrichUI_Table_ColumnTable">
+					<thead>
+						<tr class="FrichUI_Table_r0 FrichUI_Table_TitleRow">
+							<th class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"></div></th>
+							<th><div class="FrichUI_Table_c1">编号</div></th>
+							<th class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">姓名</div></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="FrichUI_Table_r1 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">1</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">张铭峰</div></td>
+						</tr>
+						<tr class="FrichUI_Table_r2 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">2</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">邹芯芷</div></td>
+						</tr>
+						<tr class="FrichUI_Table_r3 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">3</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">李卓骏</div></td>
+						</tr>
+						<tr class="FrichUI_Table_r4 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">4</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">李松岭</div></td>
+						</tr>
+						<tr class="FrichUI_Table_r5 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">5</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">陈秀</div></td>
+						</tr>
+						<tr class="FrichUI_Table_r6 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">6</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">陈宵峰</div></td>
+						</tr>
+						<tr class="FrichUI_Table_r7 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">7</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">朱雪玲</div></td>
+						</tr>
+						<tr class="FrichUI_Table_r8 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">8</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">马敏湘</div></td>
+						</tr>
+						<tr class="FrichUI_Table_r9 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">9</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">潘仪</div></td>
+						</tr>
+						<tr class="FrichUI_Table_r10 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">10</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">傅利生</div></td>
+						</tr>
+						<tr class="FrichUI_Table_r11 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">11</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">李媛</div></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="FrichUI_Table_FloatHeader">
+				<table class="FrichUI_Table_HeaderTable">
+					<thead>
+						<tr class="FrichUI_Table_r0 FrichUI_Table_TitleRow">
+							<th class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"></div></th>
+							<th><div class="FrichUI_Table_c1">编号</div></th>
+							<th class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">姓名</div></th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+		
+				
+		<div class="FrichUI_Table_Pagination_Frame">
+			<div class="FrichUI_Table_Pagination_Tips">当前999页/共999页 共99999999记录</div>
+			<div class="FrichUI_Table_Pagination_Select">
+				<a class="FrichUI_Table_Pagination_First "></a>
+				<a class="FrichUI_Table_Pagination_Previous "></a>
+				<a class="FrichUI_Table_Pagination_Page FrichUI_Table_Pagination_active">1</a>
+				<a class="FrichUI_Table_Pagination_Page">2</a>
+				<a class="FrichUI_Table_Pagination_Page">3</a>
+				<a class="FrichUI_Table_Pagination_Page">…</a>
+				<a class="FrichUI_Table_Pagination_Page">499</a>
+				<a class="FrichUI_Table_Pagination_Next"></a>
+				<a class="FrichUI_Table_Pagination_Last"></a>
+			</div>
+			<div class="FrichUI_Table_Pagination_Skip">
+				跳转至<input type="text" size="2" />页
+				<input type="submit" name="submit" class="FrichUI_Table_Pagination_Config" value="确定">
+			</div>
+			
+			
+		</div>
+	</div>
+	<div class = "fr_30"></div>
+	
+	<div class = "fr_30"></div>
+	<div class = "fr_30"></div>
+	<div class = "fr_30"></div>
+	
+
+	<div id="table2">
+		<div class="FrichUI_Table_Frame">
+			<div class="FrichUI_Table_Content">
+				<table class="FrichUI_Table_ContentTable">
+					<thead>
+						<tr class="FrichUI_Table_r0 FrichUI_Table_TitleRow">
+							<th class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"></div></th>
+							<th><div class="FrichUI_Table_c1">编号</div></th>
+							<th class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">姓名</div></th>
+							<th><div class="FrichUI_Table_c3">学号</div></th>
+							<th><div class="FrichUI_Table_c4">课程名</div></th>
+							<th><div class="FrichUI_Table_c5">课程号</div></th>
+							<th><div class="FrichUI_Table_c6">考试形式</div></th>
+							<th><div class="FrichUI_Table_c7">成绩</div></th>
+							<th><div class="FrichUI_Table_c8">备注</div></th>
+							<th><div class="FrichUI_Table_c9">操作</div></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="FrichUI_Table_r1 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">1</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">张铭峰</div></td>
+							<td><div class="FrichUI_Table_c3">16001001</div></td>
+							<td><div class="FrichUI_Table_c4">C语言程序设计</div></td>
+							<td><div class="FrichUI_Table_c5">801001</div></td>
+							<td><div class="FrichUI_Table_c6">正考</div></td>
+							<td><div class="FrichUI_Table_c7">82</div></td>
+							<td><div class="FrichUI_Table_c8"></div></td>
+							<td><div class="FrichUI_Table_c9"></div></td>
+						</tr>
+						<tr class="FrichUI_Table_r2 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">2</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">邹芯芷</div></td>
+							<td><div class="FrichUI_Table_c3">16001002</div></td>
+							<td><div class="FrichUI_Table_c4">C语言程序设计</div></td>
+							<td><div class="FrichUI_Table_c5">801001</div></td>
+							<td><div class="FrichUI_Table_c6">正考</div></td>
+							<td><div class="FrichUI_Table_c7">84</div></td>
+							<td><div class="FrichUI_Table_c8"></div></td>
+							<td><div class="FrichUI_Table_c9"></div></td>
+						</tr>
+						<tr class="FrichUI_Table_r3 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">3</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">李卓骏</div></td>
+							<td><div class="FrichUI_Table_c3">16001003</div></td>
+							<td><div class="FrichUI_Table_c4">C语言程序设计</div></td>
+							<td><div class="FrichUI_Table_c5">801001</div></td>
+							<td><div class="FrichUI_Table_c6">正考</div></td>
+							<td><div class="FrichUI_Table_c7">83</div></td>
+							<td><div class="FrichUI_Table_c8"></div></td>
+							<td><div class="FrichUI_Table_c9"></div></td>
+						</tr>
+						<tr class="FrichUI_Table_r4 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">4</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">李松岭</div></td>
+							<td><div class="FrichUI_Table_c3">16001004</div></td>
+							<td><div class="FrichUI_Table_c4">C语言程序设计</div></td>
+							<td><div class="FrichUI_Table_c5">801001</div></td>
+							<td><div class="FrichUI_Table_c6">正考</div></td>
+							<td><div class="FrichUI_Table_c7">90</div></td>
+							<td><div class="FrichUI_Table_c8"></div></td>
+							<td><div class="FrichUI_Table_c9"></div></td>
+						</tr>
+						<tr class="FrichUI_Table_r5 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">5</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">陈秀</div></td>
+							<td><div class="FrichUI_Table_c3">16001005</div></td>
+							<td><div class="FrichUI_Table_c4">C语言程序设计</div></td>
+							<td><div class="FrichUI_Table_c5">801001</div></td>
+							<td><div class="FrichUI_Table_c6">正考</div></td>
+							<td><div class="FrichUI_Table_c7">65</div></td>
+							<td><div class="FrichUI_Table_c8"></div></td>
+							<td><div class="FrichUI_Table_c9"></div></td>
+						</tr>
+						<tr class="FrichUI_Table_r6 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">6</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">陈宵峰</div></td>
+							<td><div class="FrichUI_Table_c3">16001006</div></td>
+							<td><div class="FrichUI_Table_c4">C语言程序设计</div></td>
+							<td><div class="FrichUI_Table_c5">801001</div></td>
+							<td><div class="FrichUI_Table_c6">正考</div></td>
+							<td><div class="FrichUI_Table_c7">63</div></td>
+							<td><div class="FrichUI_Table_c8"></div></td>
+							<td><div class="FrichUI_Table_c9"></div></td>
+						</tr>
+						<tr class="FrichUI_Table_r7 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">7</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">朱雪玲</div></td>
+							<td><div class="FrichUI_Table_c3">16001007</div></td>
+							<td><div class="FrichUI_Table_c4">C语言程序设计</div></td>
+							<td><div class="FrichUI_Table_c5">801001</div></td>
+							<td><div class="FrichUI_Table_c6">正考</div></td>
+							<td><div class="FrichUI_Table_c7">79</div></td>
+							<td><div class="FrichUI_Table_c8"></div></td>
+							<td><div class="FrichUI_Table_c9"></div></td>
+						</tr>
+						<tr class="FrichUI_Table_r8 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">8</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">马敏湘</div></td>
+							<td><div class="FrichUI_Table_c3">16001008</div></td>
+							<td><div class="FrichUI_Table_c4">C语言程序设计</div></td>
+							<td><div class="FrichUI_Table_c5">801001</div></td>
+							<td><div class="FrichUI_Table_c6">正考</div></td>
+							<td><div class="FrichUI_Table_c7">73</div></td>
+							<td><div class="FrichUI_Table_c8"></div></td>
+							<td><div class="FrichUI_Table_c9"></div></td>
+						</tr>
+						<tr class="FrichUI_Table_r9 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">9</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">潘仪</div></td>
+							<td><div class="FrichUI_Table_c3">16001009</div></td>
+							<td><div class="FrichUI_Table_c4">C语言程序设计</div></td>
+							<td><div class="FrichUI_Table_c5">801001</div></td>
+							<td><div class="FrichUI_Table_c6">正考</div></td>
+							<td><div class="FrichUI_Table_c7">80</div></td>
+							<td><div class="FrichUI_Table_c8"></div></td>
+							<td><div class="FrichUI_Table_c9"></div></td>
+						</tr>
+						<tr class="FrichUI_Table_r10 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">10</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">傅利生</div></td>
+							<td><div class="FrichUI_Table_c3">16001010</div></td>
+							<td><div class="FrichUI_Table_c4">C语言程序设计</div></td>
+							<td><div class="FrichUI_Table_c5">801001</div></td>
+							<td><div class="FrichUI_Table_c6">正考</div></td>
+							<td><div class="FrichUI_Table_c7">88</div></td>
+							<td><div class="FrichUI_Table_c8"></div></td>
+							<td><div class="FrichUI_Table_c9"></div></td>
+						</tr>
+						<tr class="FrichUI_Table_r11 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">11</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">李媛</div></td>
+							<td><div class="FrichUI_Table_c3">16001011</div></td>
+							<td><div class="FrichUI_Table_c4">C语言程序设计</div></td>
+							<td><div class="FrichUI_Table_c5">801001</div></td>
+							<td><div class="FrichUI_Table_c6">正考</div></td>
+							<td><div class="FrichUI_Table_c7">81</div></td>
+							<td><div class="FrichUI_Table_c8"></div></td>
+							<td><div class="FrichUI_Table_c9"></div></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="FrichUI_Table_FloatTitle">
+				<table class="FrichUI_Table_TitleTable">
+					<thead>
+						<tr class="FrichUI_Table_r0 FrichUI_Table_TitleRow">
+							<th class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"></div></th>
+							<th><div class="FrichUI_Table_c1">编号</div></th>
+							<th class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">姓名</div></th>
+							<th><div class="FrichUI_Table_c3">学号</div></th>
+							<th><div class="FrichUI_Table_c4">课程名</div></th>
+							<th><div class="FrichUI_Table_c5">课程号</div></th>
+							<th><div class="FrichUI_Table_c6">考试形式</div></th>
+							<th><div class="FrichUI_Table_c7">成绩</div></th>
+							<th><div class="FrichUI_Table_c8">备注</div></th>
+							<th><div class="FrichUI_Table_c9">操作</div></th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div class="FrichUI_Table_FloatColumn">
+				<table class="FrichUI_Table_ColumnTable">
+					<thead>
+						<tr class="FrichUI_Table_r0 FrichUI_Table_TitleRow">
+							<th class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"></div></th>
+							<th><div class="FrichUI_Table_c1">编号</div></th>
+							<th class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">姓名</div></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="FrichUI_Table_r1 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">1</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">张铭峰</div></td>
+						</tr>
+						<tr class="FrichUI_Table_r2 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">2</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">邹芯芷</div></td>
+						</tr>
+						<tr class="FrichUI_Table_r3 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">3</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">李卓骏</div></td>
+						</tr>
+						<tr class="FrichUI_Table_r4 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">4</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">李松岭</div></td>
+						</tr>
+						<tr class="FrichUI_Table_r5 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">5</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">陈秀</div></td>
+						</tr>
+						<tr class="FrichUI_Table_r6 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">6</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">陈宵峰</div></td>
+						</tr>
+						<tr class="FrichUI_Table_r7 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">7</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">朱雪玲</div></td>
+						</tr>
+						<tr class="FrichUI_Table_r8 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">8</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">马敏湘</div></td>
+						</tr>
+						<tr class="FrichUI_Table_r9 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">9</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">潘仪</div></td>
+						</tr>
+						<tr class="FrichUI_Table_r10 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">10</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">傅利生</div></td>
+						</tr>
+						<tr class="FrichUI_Table_r11 FrichUI_Table_DataRow">
+							<td class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"><input type="checkbox" name="select"></div></td>
+							<td><div class="FrichUI_Table_c1">11</div></td>
+							<td class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">李媛</div></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="FrichUI_Table_FloatHeader">
+				<table class="FrichUI_Table_HeaderTable">
+					<thead>
+						<tr class="FrichUI_Table_r0 FrichUI_Table_TitleRow">
+							<th class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"></div></th>
+							<th><div class="FrichUI_Table_c1">编号</div></th>
+							<th class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">姓名</div></th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+
+</body>
+</html>

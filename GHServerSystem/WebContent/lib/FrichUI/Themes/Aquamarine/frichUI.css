@@ -16,6 +16,7 @@
 	overflow: auto;
 	font-family: monospace,Arial,sans-serif;
 	border: 2px solid #9CB26A;
+	border-bottom: none;
 }
 .FrichUI_Table_Frame table
 {
@@ -78,7 +79,7 @@
 {
 	background: #FFF;
 }
-.FrichUI_Table_DataRow:nth-child(2n-1)
+.FrichUI_Table_DataRow:nth-child(2n-1) 
 {
 	background: #F1F1F1;
 }
@@ -143,11 +144,132 @@
 	width: auto;
 }
 
+
+
 /* 1.5 附加功能 */
 .FrichUI_Table_Frame .FrichUI_Table_CheckColumn
 {
 	padding-left: 3px;
 	padding-right: 3px;
+}
+
+/*1.6分页显示*/
+.FrichUI_Table_Pagination_Frame
+{
+	width:100%;
+	height:30px;
+	font-family: monospace,Arial,sans-serif;
+	font-size:12px;
+	border: 2px solid #9CB26A;
+	border-top: none;
+	line-height:30px;
+	text-align:left center;
+}
+
+.FrichUI_Table_Pagination_active
+{
+	background-color:#BBB;
+}
+.FrichUI_Table_Pagination_Tips
+{
+	min-width:210px;
+	padding:0 10px;
+	display:inline;
+	float:left;
+}
+
+.FrichUI_Table_Pagination_Select
+{
+	
+	display:inline;
+	float:none;
+}
+
+.FrichUI_Table_Pagination_Select a
+{
+	text-align:center;
+	line-height:16px;
+	float:left;
+}
+
+.FrichUI_Table_Pagination_Select a:hover
+{
+	color:#9CB26A;
+}
+
+.FrichUI_Table_Pagination_Page
+{
+	margin:5px 2px;
+	float:right;
+	width:25px;
+	height:16px;
+	border:#CCC solid 1px; 
+}
+
+
+.FrichUI_Table_Pagination_Skip
+{
+	min-width:160px;
+	margin-left:10px;
+	display:inline;
+	float:none;
+}
+
+
+.FrichUI_Table_Pagination_Frame_hidden
+{
+	display:none;
+}
+
+.FrichUI_Table_Pagination_First
+{
+	width:26px;
+	height:14px;
+	margin-top:6px;
+	background:url(../Aquamarine/image/First.png) left center no-repeat;
+}
+
+.FrichUI_Table_Pagination_Previous
+{
+	background:url(../Aquamarine/image/Previous.png) left center no-repeat;
+	width:26px;
+	height:14px;
+	margin-top:6px;
+}
+
+.FrichUI_Table_Pagination_Next
+{
+	background:url(../Aquamarine/image/Next.png) left center no-repeat;
+	width:26px;
+	height:14px;
+	margin-top:6px;
+}
+
+.FrichUI_Table_Pagination_Last
+{
+	background:url(../Aquamarine/image/Last.png) left center no-repeat;
+	width:26px;
+	height:14px;
+	margin-top:6px;
+}
+
+.FrichUI_Table_Pagination_First:hover,
+.FrichUI_Table_Pagination_Previous:hover,
+.FrichUI_Table_Pagination_Next:hover,
+.FrichUI_Table_Pagination_Last:hover
+{
+	border:#CCC solid 1px; 
+}
+
+/*1.7列表*/
+.FrichUI_Table_List1
+{
+	font-size: 12px;
+	padding: 0 0 1px 0;
+	border-bottom: 1px solid #DDD;
+	background-color:#ccc;
+	height:40px;
+	float:none;
 }
 
 /* 2. 菜单组件 ************************/
@@ -254,7 +376,6 @@
 .frichUI_Cover
 {
 	position: absolute;
-	display: none;
 	/*
 	width: 100%;	自动设置为document宽高
 	height: 100%;
@@ -269,7 +390,8 @@
 	display: block;
 	top: 30%;
 	left: 30%;
-	min-width: 244px;
+	min-width: 184px;
+	max-width: 700px;
 	z-index: 999999;
 	border: 2px solid #9CB26A;
 	border-radius: 5px 5px 5px 5px;
@@ -302,7 +424,7 @@
 	position: static;
 	display: block;
 	min-height: 40px;
-	padding: 30px 50px 30px 100px;
+	padding: 20px 20px 20px 70px;
 	background-color: #FFF;
 }
 /* 1.3 会话域 */
@@ -362,7 +484,7 @@
 	position: static;
 	display: block;
 	float: left;
-	margin: 0 0 0 -73px;
+	margin: 0 0 0 -58px;
 	width: 40px;
 	height: 40px;
 }
@@ -452,4 +574,9 @@
 {
     transition: width linear .2s,
         left linear .2s;
+}
+
+.fr_30
+{
+	height:30px;
 }
