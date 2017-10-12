@@ -1,10 +1,10 @@
 @CHARSET "UTF-8";
 body
 {
-  background: -webkit-linear-gradient(180deg, #afafaf, #54dcff); /* Safari 5.1 - 6.0 */
-  background: -o-linear-gradient(180deg, #afafaf, #54dcff); /* Opera 11.1 - 12.0 */
-  background: -moz-linear-gradient(180deg, #afafaf, #54dcff); /* Firefox 3.6 - 15 */
-  background: linear-gradient(180deg, #afafaf, #54dcff); /* 标准的语法 */
+  background: -webkit-linear-gradient(180deg, #3d4455, #606880); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(180deg, #3d4455, #606880); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(180deg, #3d4455, #606880); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to top,#3d4455, #606880) /* 标准的语法 */
 }
 div
 {

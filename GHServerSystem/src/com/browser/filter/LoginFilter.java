@@ -7,6 +7,12 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.common.lib.Lib;
+import com.server.model.UserModel;
 
 /**
  * Servlet Filter implementation class LoginFilter
@@ -34,9 +40,15 @@ public class LoginFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-
-		// pass the request along the filter chain
-		chain.doFilter(request, response);
+		HttpSession session = ((HttpServletRequest)request).getSession();
+		UserModel user = (UserModel)session.getAttribute("P_User");
+		if( user != null && !Lib.isEmpty(user.getO_USERID()) ) {
+			chain.doFilter(request, response);
+		}
+		else {
+			((HttpServletResponse)response).sendRedirect("/GHServerSystem/login.html");
+		}
+		
 	}
 
 	/**

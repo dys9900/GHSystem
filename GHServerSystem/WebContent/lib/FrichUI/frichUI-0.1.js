@@ -84,7 +84,9 @@
 		 * 私有成员声明
 		 */
 		//皮肤1	淡蓝绿(默认)
-		FRICHUI_THEME_ORANGE: new Theme("Themes/Aquamarine/frichUI.css", "aquamarine"),
+		FRICHUI_THEME_AQUAMARINE: new Theme("Themes/Aquamarine/frichUI.css", "aquamarine"),
+		//皮肤2	暗色
+		FRICHUI_THEME_DARK: new Theme("Themes/Dark/frichUI.css", "dark"),
 		
 		/*
 		 * 公共接口定义
@@ -121,6 +123,7 @@
 		}
 		
 	};
+	FrichUI.prototype.Theme = Theme;
 	
 	/*
 	 * 2.3 工厂核心件
@@ -299,7 +302,7 @@
 		this.id = options.id;
 		this.frame = frame;
 		this.options = options;
-		
+
 		$(frame).find("a").bind('click', function(event){
 			var fh = $(this).parent(".frichUI_Menu_Room");
 			
@@ -308,8 +311,8 @@
 				// 设置滑动效果
 				fh.css("height", "auto");
 				var AutoHeight = fh.height();
-				fh.css("height", "30px");
-				fh.animate({height: AutoHeight + "px"}, (AutoHeight-30) * 1.5, function(){
+				fh.css("height", "35px");
+				fh.animate({height: AutoHeight + "px"}, (AutoHeight-35) * 2.5, function(){
 					fh.css("height", "auto");
 				});
 				fh.addClass("frichUI_Menu_Showed");
@@ -319,7 +322,7 @@
 			{
 				fh.css("height", "auto");
 				var AutoHeight = fh.height();
-				fh.animate({height: "30px"}, (AutoHeight-30) * 2.5);
+				fh.animate({height: "35px"}, (AutoHeight-35) * 2.5);
 				fh.removeClass("frichUI_Menu_Showed");
 			}
 			else
@@ -329,7 +332,7 @@
 				{
 					fh.css("height", "auto");
 					var AutoHeight = fh.height();
-					fh.animate({height: "30px"}, (AutoHeight-30) * 2.5);
+					fh.animate({height: "35px"}, (AutoHeight-30) * 2.5);
 					fh.removeClass("frichUI_Menu_Showed");
 				}
 			}

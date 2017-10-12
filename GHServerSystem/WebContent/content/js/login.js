@@ -53,6 +53,7 @@ $(document).ready(function(){
 			    		$("#LoginInfo").html();
 				    	fa.html("登录成功");
 				    	fa.addClass("success");
+				    	window.location.href = "main.html";
 			    	}
 			    	else if(date.r == 2){
 			    		$("#LoginInfo").html(date.m);

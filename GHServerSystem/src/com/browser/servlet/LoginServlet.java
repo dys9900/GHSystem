@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet implements IServlet{
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		doPost(request, response);
 	}
 
 	/**
@@ -49,9 +49,13 @@ public class LoginServlet extends HttpServlet implements IServlet{
 		
 		if("Frich".equals(userModel.getO_USERNAME()) 
 				&& "0".equals(userModel.getO_PASSWORD())) {
+			userModel.setO_USERDISPLAYNAME("Frich");
+			userModel.setO_USERID("{100001}");
+			
 			response.getWriter().write(success("µÇÂ¼³É¹¦"));
 			HttpSession session = request.getSession();
 			session.setAttribute("P_User", userModel);
+			session.setAttribute("K_IsLogin", true);
 		}
 		else {
 			userModel = loginService.check(userModel);

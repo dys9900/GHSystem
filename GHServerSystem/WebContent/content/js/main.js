@@ -31,10 +31,28 @@ function initLayout(){
 	$(".main").height(view - header - borderHeight - paddingHeight);
 	
 	//$(".logo").width(width($(".navigation")));
+	
+	var userHeight = height($(".userFrame"));
+	$(".userFrame").css({"height": "50px"});
+	
+	$(".userFrame").hover(function(){
+		$(this).stop();
+		$(this).animate({
+			"height": userHeight + "px"
+		}, (userHeight-50) * 2.5);
+	}, function(){
+		$(this).stop();
+		$(this).animate({
+			"height": "50px"
+		}, (userHeight-50) * 2.5);
+	});
 }
 
 $(document).ready(function(){
 	initLayout();
 	$(window).resize(initLayout);
 	
+	$(".toolBox").click(function(){
+    	window.location.href = "json/logout.do";
+	})
 });

@@ -15,3 +15,11 @@
 	height: 30px;
 	background: url(../../icon/pasw.png);
 }
+.userhead
+{
+	position: static;
+	display: block;
+	width: 40px;
+	height: 40px;
+	background: url(../../img/userHead/head.jpg);
+}

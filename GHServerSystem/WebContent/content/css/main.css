@@ -9,18 +9,18 @@ body
 	margin: 0;
 	padding: 0;
 	width: 100%;
-	height: 40px;
+	height: 50px;
 	background: linear-gradient(to top,#3d4455, #606880);
-	line-height: 40px;
+	line-height: 50px;
 }
 .logo
 {
 	display: inline;
 	margin: 5px 0 5px 10px;
 	float: left;
-	width: 30px;
-	height: 30px;
-	font-size: 18px;
+	width: 40px;
+	height: 40px;
+	font-size: 20px;
 	background: url(../../icon/logo.png);
 }
 .name
@@ -31,9 +31,67 @@ body
 	float: left;
 	height: 100%;
 	text-indent: 5px;
-	font-size: 18px;
+	font-size: 22px;
 	color: #EFEFEF;
 	text-shadow: 0 0 5px #000;
+}
+.userFrame
+{
+	display: block;
+	float: right;
+	width: 130px;
+	margin-right: 5px;
+	overflow: hidden;
+}
+.userFrame *
+{
+	display: block;
+}
+.userFrame > a
+{
+	width: 100%;
+	overflow: hidden;
+}
+.userFrame a *
+{
+	float: left;
+}
+.userFrame .userBox
+{
+	height: 50px;
+	line-height: 50px;
+}
+.userFrame .userBox *
+{
+	float: left;
+}
+.userFrame .userBox i
+{
+	margin: 5px 5px 5px 0;
+}
+.userFrame .userBox label
+{
+	color: #EFEFEF;
+	text-shadow: 0 0 5px #000;
+}
+.userFrame .toolBox
+{
+	height: 35px;
+	line-height: 35px;
+	font-size: 14px;
+	color: #73b1ae;
+	background: #4c5469;
+}
+.userFrame .toolBox i
+{
+	margin: 5px 10px 5px 10px;
+	width: 25px;
+	height: 25px;
+}
+.userFrame .toolBox:hover
+{
+	color: #FFF;
+	background: #3d4455;
 }
 .main
 {
@@ -49,7 +107,8 @@ body
 	padding: 0 0 0 0;
 	width: 220px;
 	height: 100%;
-	background-color: #4A5864;
+	background: #4c5469;
+	/* #4A5864; */
 }
 .information
 {
