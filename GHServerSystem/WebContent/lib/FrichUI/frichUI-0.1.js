@@ -13,6 +13,7 @@
 	var FRICHUI_ROOT = "FrichUI/";
 	
 	var reg1 = /\{[^{}]+\}/g;		//匹配字符串，用于model检验
+	
 	/*
 	 * 2. FrichUI 模块层
 	 */
@@ -95,7 +96,7 @@
 		init: function(root, theme){
 			this.root = root || FRICHUI_ROOT;
 			
-			this.theme = theme || this.FRICHUI_THEME_ORANGE;
+			this.theme = theme || this.FRICHUI_THEME_AQUAMARINE;
 			this.theme.init(this.root);
 			
 			this.entity = new Array();
@@ -196,24 +197,65 @@
 	        return result;
 		},
 	    createFrame: function (frClass) {
-	        var frame = $("<div class='" + frClass + "'></div>");
-
+	        var frame = $("<div></div>");
+	        frame.attr({
+	    		class: frClass,
+	    	});
 	        return frame;
 	    },
+	    createDiv: function (frClass, value) {
+	        var div = $("<div></div>");
+	        div.attr({
+	    		class: frClass,
+	    	});
+	        div.append(value);
+	        return div;
+	    },
 	    createOl: function (frClass) {
-	        var ol = $("<ol class='" + frClass + "'></ol>");
-
+	        var ol = $("<ol></ol>");
+	        ol.attr({
+	    		class: frClass,
+	    	});
 	        return ol;
 	    },
 	    createUl: function (frClass) {
-	        var ul = $("<ul class='" + frClass + "'></ul>");
-
+	        var ul = $("<ul></ul>");
+	        ul.attr({
+	    		class: frClass,
+	    	});
 	        return ul;
 	    },
 	    createLi: function (frClass) {
-	        var li = $("<li class='" + frClass + "'></li>");
-
+	        var li = $("<li></li>");
+	        li.attr({
+	    		class: frClass,
+	    	});
 	        return li;
+	    },
+	    createH: function (i, frClass, value) {
+	        var h = $("<h"+ i +"></h"+ i +">");
+
+	    	h.attr({
+	    		class: frClass,
+	    	});
+	    	h.append(value);
+	        return h;
+	    },
+	    createI: function (frClass) {
+	        var i = $("<i></i>");
+	    	i.attr({
+	    		class: frClass,
+	    	});
+	        return i;
+	    },
+	    createA: function(frClass, value, href){
+	    	var a = $("<a></a>");
+	    	a.attr({
+	    		class: frClass,
+	    		href: href
+	    	})
+	    	a.append(value);
+	        return a;
 	    },
 		initCreate: function(dom, customer){
 			options = $.extend(true, {}, this.defaul, customer);
@@ -359,8 +401,255 @@
 	 */
 	
 	
+	/*
+	 * 2.3.5 会话组件
+	 */	
+	var DialogFactory = function(){
+		Factory.call(this);
+		
+		this.tools = {
+			close: "FrichUI_Dialog_Close",
+			full: "FrichUI_Dialog_Full",
+			min: "FrichUI_Dialog_Min"
+		}
+		
+		this.icons = {
+			info: "FrichUI_Dialog_Info",
+			help: "FrichUI_Dialog_Help",
+			warnning: "FrichUI_Dialog_Warning",
+			success: "FrichUI_Dialog_Success",
+			error: "FrichUI_Dialog_Error"
+		}
+		
+		this.control = {
+			yes: "FrichUI_Dialog_Yes",
+			no: "FrichUI_Dialog_No",
+			confirm: "FrichUI_Dialog_Confirm",
+			cancle: "FrichUI_Dialog_Cancle"
+		}
+		
+		this.defaul = $.extend(true, {}, this.defaul, {
+			type: "info",
+			enableCover: true,
+			closeClick: function(){
+				alert("点击了关闭");
+			},
+			yesClick: function(){
+				alert("点击了是");
+			},
+			noClick: function(){
+				alert("点击了否");
+			},
+			confirmClick: function(){
+				alert("点击了确定");
+			},
+			cancleClick: function(){
+				alert("点击了取消");
+			}
+		});
+		
+		this.infoDefaul = $.extend(true, {}, this.defaul, {
+			title: "消息框",
+			tools: ["close"],
+			icon: "info",
+			message: "这是一个消息框",
+			control: ["confirm"]
+		});
+
+		this.helpDefaul = $.extend(true, {}, this.defaul, {
+			title: "询问框",
+			tools: ["close"],
+			icon: "help",
+			message: "这是一个询问框",
+			control: ["yes", "no", "cancle"]
+		});
+		
+		this.warnningDefaul = $.extend(true, {}, this.defaul, {
+			title: "警告框",
+			tools: ["close"],
+			icon: "warnning",
+			message: "这是一个警告框",
+			control: ["confirm", "cancle"]
+		});
+		
+		this.successDefaul = $.extend(true, {}, this.defaul, {
+			title: "成功框",
+			tools: ["close"],
+			icon: "success",
+			message: "这是一个成功框",
+			control: ["confirm"]
+		});
+		
+		this.errorDefaul = $.extend(true, {}, this.defaul, {
+			title: "错误框",
+			tools: ["close"],
+			icon: "error",
+			message: "这是一个错误框",
+			control: ["confirm"]
+		});
+		
+		this.createTitle = function(options){
+			var title = this.createDiv("FrichUI_Dialog_Title");
+			
+			var h5 = this.createH(5, "FrichUI_Dialog_Name", options.title);
+			
+			title.append(h5);
+			
+			var def = {
+				close: false,
+				min: false,
+				full: false
+			}
+			
+			for(var i=0; i<options.tools.length; i++){
+				switch(options.tools[i]){
+					case "close":
+						def.close = true;
+						break;
+					case "min":
+						def.min = true;
+						break;
+					case "full":
+						def.full = true;
+						break;
+					default: break;
+				}
+			}
+			
+			if(def.close){
+				var tool = this.createI(this.tools.close);
+				title.append(tool);
+			}
+			if(def.full){
+				var tool = this.createI(this.tools.full);
+				title.append(tool);
+			}
+			if(def.min){
+				var tool = this.createI(this.tools.min);
+				title.append(tool);
+			}
+			
+			return title;
+		}
+		
+		this.createContent = function(options){
+			var content = this.createDiv("FrichUI_Dialog_Content");
+
+			for(var i in this.icons){
+				if(i == options.icon){
+					var icon = this.createI(this.icons[i]);
+					content.append(icon);
+				}
+			}
+
+			var a = this.createA(undefined, options.message);
+			
+			content.append(a);
+			return content;
+		}
+
+		this.createFoot = function(options){
+			var foot = this.createDiv("FrichUI_Dialog_Foot");
+			
+			var def = {
+				yes: false,
+				no: false,
+				confirm: false,
+				cancle: false,
+			}
+			
+			for(var i=0; i<options.control.length; i++){
+				switch(options.control[i]){
+					case "yes":
+						def.yes = true;
+						break;
+					case "no":
+						def.no = true;
+						break;
+					case "confirm":
+						def.confirm = true;
+						break;
+					case "cancle":
+						def.cancle = true;
+						break;
+					default: break;
+				}
+			}
+			
+			if(def.cancle){
+				var control = this.createA(this.control.cancle, "取消");
+				foot.append(control);
+			}
+			if(def.no){
+				var control = this.createA(this.control.no, "否");
+				foot.append(control);
+			}
+			if(def.yes){
+				var control = this.createA(this.control.yes, "是");
+				foot.append(control);
+			}
+			if(def.confirm){
+				var control = this.createA(this.control.confirm, "确定");
+				foot.append(control);
+			}
+			
+			return foot;
+		}
+		
+	}
+
+	DialogFactory.prototype = new Factory();
 	
-	
+	DialogFactory.prototype.make = function(dom, customer){
+		var options = this.initCreate(dom, customer);
+		
+		switch(options.type){
+			case "info":
+				options = $.extend(true, {}, this.infoDefaul, options);
+				break;
+			case "help":
+				options = $.extend(true, {}, this.helpDefaul, options);
+				break;
+			case "warnning":
+				options = $.extend(true, {}, this.warnningDefaul, options);
+				break;
+			case "success":
+				options = $.extend(true, {}, this.successDefaul, options);
+				break;
+			case "error":
+				options = $.extend(true, {}, this.errorDefaul, options);
+				break;
+			default: break;
+		}
+		
+		/* 添加遮罩层 */
+		var cover;
+		if(options.enableCover){
+			cover = this.createFrame("FrichUI_Cover");
+		}
+		else {
+			cover = null;
+		}
+		
+		/* 创建基架 */
+		var frame = this.createFrame("FrichUI_Dialog_Frame");
+		
+		frame.append(this.createTitle(options));
+
+		frame.append(this.createContent(options));
+
+		frame.append(this.createFoot(options));
+
+		if(cover){
+			frame.appendTo(cover);
+			cover.appendTo($(document).find("body").eq(0));
+		}
+		
+		/* 创建Dialog实体 */
+		return 0;
+	};
+
+	FrichUI.prototype.Dialog = new DialogFactory();
 	/*
 	 * 3. 静态定义层
 	 */

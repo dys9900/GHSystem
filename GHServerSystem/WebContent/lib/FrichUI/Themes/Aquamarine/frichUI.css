@@ -273,17 +273,17 @@
 }
 
 /* 2. 菜单组件 ************************/
-.frichUI_Menu_Frame
+.FrichUI_Menu_Frame
 {
 	display: block;
 	padding: 0;
 	background: #0083c1;
 }
-.frichUI_Menu_Frame a
+.FrichUI_Menu_Frame a
 {
 	text-decoration: none;
 }
-.frichUI_Menu_House
+.FrichUI_Menu_House
 {
 	position: static;
 	display: block;
@@ -291,7 +291,7 @@
 	padding: 0;
 	list-style-type: none;
 }
-.frichUI_Menu_Room
+.FrichUI_Menu_Room
 {
 	position: static;
 	display: block;
@@ -299,11 +299,11 @@
 	height: 30px;
 	overflow: hidden;
 }
-.frichUI_Menu_Select
+.FrichUI_Menu_Select
 {
 	background: #005a84;
 }
-.frichUI_Menu_Room a
+.FrichUI_Menu_Room a
 {
 	display: block;
 	padding-top: 0;
@@ -314,44 +314,44 @@
 	color: #FFF;
 	cursor: pointer;
 }
-.frichUI_Menu_Room a:hover
+.FrichUI_Menu_Room a:hover
 {
 	color: #F0FF7F;
 	background: #006c9e;
 }
-.frichUI_Menu_Level1 a
+.FrichUI_Menu_Level1 a
 {
 	padding-left: 10px;
 	font-size: 14px;
 	font-weight: normal;
 }
-.frichUI_Menu_Level2 a
+.FrichUI_Menu_Level2 a
 {
 	padding-left: 25px;
 	font-size: 12px;
 	font-weight: normal;
 }
-.frichUI_Menu_Level3 a
+.FrichUI_Menu_Level3 a
 {
 	padding-left: 40px;
 	font-size: 12px;
 	font-weight: normal;
 }
-.frichUI_Menu_Level4 a
+.FrichUI_Menu_Level4 a
 {
 	padding-left: 55px;
 	font-size: 12px;
 	font-weight: normal;
 }
-.frichUI_Menu_Room a
+.FrichUI_Menu_Room a
 {
 	transition: color .5s ease-out;
 }
-.frichUI_Menu_Room
+.FrichUI_Menu_Room
 {
 	transition: background-color .5s ease-out;
 }
-.frichUI_Node
+.FrichUI_Node
 {
 	display: block;
 	float: left;
@@ -373,7 +373,7 @@
  */
  
 /* 1. 对话框 */
-.frichUI_Cover
+.FrichUI_Cover
 {
 	position: absolute;
 	/*
@@ -384,7 +384,7 @@
 	z-index: 99999;
 	background-color: rgba(60, 60, 60, .5);
 }
-.frichUI_Dialog_Frame
+.FrichUI_Dialog_Frame
 {
 	position: fixed;
 	display: block;
@@ -398,7 +398,7 @@
 	box-shadow: 0 0 30px #FFF;
 }
 /* 1.1 会话头 */
-.frichUI_Dialog_Title
+.FrichUI_Dialog_Title
 {
 	position: static;
 	display: block;
@@ -406,7 +406,7 @@
 	height: 30px;
 	background: #9CB26A;
 }
-.frichUI_Dialog_Name
+.FrichUI_Dialog_Name
 {
 	position: static;
 	display: block;
@@ -419,7 +419,7 @@
 	cursor: default;
 }
 /* 1.2 会话主体 */
-.frichUI_Dialog_Content
+.FrichUI_Dialog_Content
 {
 	position: static;
 	display: block;
@@ -428,7 +428,7 @@
 	background-color: #FFF;
 }
 /* 1.3 会话域 */
-.frichUI_Dialog_Foot
+.FrichUI_Dialog_Foot
 {
 	position: static;
 	display: block;
@@ -437,9 +437,9 @@
 	background-color: #F1F1F1;
 }
 /* 1.4 事件器 */
-.frichUI_Dialog_Close,
-.frichUI_Dialog_Full,
-.frichUI_Dialog_Min
+.FrichUI_Dialog_Close,
+.FrichUI_Dialog_Full,
+.FrichUI_Dialog_Min
 {
 	position: static;
 	display: block;
@@ -447,39 +447,39 @@
 	width: 20px;
 	height: 20px;
 }
-.frichUI_Dialog_Close
+.FrichUI_Dialog_Close
 {
 	margin: 5px 5px;
 	cursor: pointer;
 	background: url(image/Button.png) -40px 0 no-repeat ;
 }
-.frichUI_Dialog_Close:hover
+.FrichUI_Dialog_Close:hover
 {
 	background: url(image/Button_hover.png) -40px 0 no-repeat ;
 }
-.frichUI_Dialog_Full
+.FrichUI_Dialog_Full
 {
 	margin: 5px 2px;
 	background: url(image/Button.png) -20px 0 no-repeat ;
 }
-.frichUI_Dialog_Full:hover
+.FrichUI_Dialog_Full:hover
 {
 	background: url(image/Button_hover.png) -20px 0 no-repeat ;
 }
-.frichUI_Dialog_Min
+.FrichUI_Dialog_Min
 {
 	margin: 5px 2px;
 	background: url(image/Button.png) 0px 0 no-repeat ;
 }
-.frichUI_Dialog_Min:hover
+.FrichUI_Dialog_Min:hover
 {
 	background: url(image/Button_hover.png) 0px 0 no-repeat ;
 }
-.frichUI_Dialog_Info,
-.frichUI_Dialog_Help,
-.frichUI_Dialog_Warning,
-.frichUI_Dialog_Success,
-.frichUI_Dialog_Error
+.FrichUI_Dialog_Info,
+.FrichUI_Dialog_Help,
+.FrichUI_Dialog_Warning,
+.FrichUI_Dialog_Success,
+.FrichUI_Dialog_Error
 {
 	position: static;
 	display: block;
@@ -488,30 +488,30 @@
 	width: 40px;
 	height: 40px;
 }
-.frichUI_Dialog_Info
+.FrichUI_Dialog_Info
 {
 	background: url(image/UI.png) 0px -4px no-repeat ;
 }
-.frichUI_Dialog_Help
+.FrichUI_Dialog_Help
 {
 	background: url(image/UI.png) 0px -51px no-repeat ;
 }
-.frichUI_Dialog_Warning
+.FrichUI_Dialog_Warning
 {
 	background: url(image/UI.png) 0px -95px no-repeat ;
 }
-.frichUI_Dialog_Success
+.FrichUI_Dialog_Success
 {
 	background: url(image/UI.png) 0px -144px no-repeat ;
 }
-.frichUI_Dialog_Error
+.FrichUI_Dialog_Error
 {
 	background: url(image/UI.png) 0px -192px no-repeat ;
 }
-.frichUI_Dialog_Yes,
-.frichUI_Dialog_No,
-.frichUI_Dialog_Confirm,
-.frichUI_Dialog_Cancle
+.FrichUI_Dialog_Yes,
+.FrichUI_Dialog_No,
+.FrichUI_Dialog_Confirm,
+.FrichUI_Dialog_Cancle
 {
 	position: static;
 	display: block;
@@ -529,37 +529,37 @@
 	color: #FFF;
 	cursor: pointer;
 }
-.frichUI_Dialog_Yes:hover,
-.frichUI_Dialog_No:hover,
-.frichUI_Dialog_Confirm:hover,
-.frichUI_Dialog_Cancle:hover
+.FrichUI_Dialog_Yes:hover,
+.FrichUI_Dialog_No:hover,
+.FrichUI_Dialog_Confirm:hover,
+.FrichUI_Dialog_Cancle:hover
 {
 	background: #3481ff;
 }
 
 /* 2. 滑动条 */
-.frichUI_FloatControle_Frame
+.FrichUI_FloatControle_Frame
 {
     position: relative;
     display: block;
     /*width: 100%; 在js中定义 */
     /*height: 100%; 在js中定义 */
 }
-.frichUI_FloatControle_Liner
+.FrichUI_FloatControle_Liner
 {
     position: absolute;
     width: 100%;
     /* top: 19px; 在js中定义 */
     /* border-bottom: 2px solid rgb(221, 221, 221); */
 }
-.frichUI_FloatControle_FloaterLiner
+.FrichUI_FloatControle_FloaterLiner
 {
     position: absolute;
     /* width: 60px; 在js中定义 */
     /* top: 19px; 在js中定义 */
     /* border-bottom: 2px solid rgb(71, 80, 89); */
 }
-.frichUI_FloatControle_Floater
+.FrichUI_FloatControle_Floater
 {
     position: absolute;
     /*width: 14px; 在js中定义 */
@@ -569,8 +569,8 @@
     /*background-color: rgb(71, 80, 89); */
     /*top: 13px; 在js中定义 */
 }
-.frichUI_FloatControle_FloaterLiner,
-.frichUI_FloatControle_Floater
+.FrichUI_FloatControle_FloaterLiner,
+.FrichUI_FloatControle_Floater
 {
     transition: width linear .2s,
         left linear .2s;
