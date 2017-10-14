@@ -37,18 +37,18 @@
 	height: 200px;
 	/* height: 100%; 由js控制*/
 	overflow: hidden;
-	/* border-bottom: none; 由js控制 */
 }
 .FrichUI_Table_House
 {
 	position: relative;
 	display: block;
 	width: auto;
-	height: 98%;
+	height: 100%;
 	/* height: 100%; 由js控制*/
 	overflow: auto;
 	font-family: Helvetica, monospace, Arial, sans-serif;
 	border: 2px solid #3d4455;
+	border-top: none;
 	border-bottom: none;
 }
 .FrichUI_Table_Frame table
@@ -70,6 +70,11 @@
 {
 	padding: 0px 5px 0 5px;
 }
+.FrichUI_Table_Frame th > div
+{
+	padding: 3px 1px;
+	border-radius: 5px;
+}
 .FrichUI_Table_Frame th > div,
 .FrichUI_Table_Frame td > div
 {
@@ -77,16 +82,6 @@
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
-}
-.FrichUI_Table_Frame .FrichUI_Table_Floated
-{
-	
-}
-.FrichUI_Table_c8
-{
-	min-width: 200px;
-	max-width: 900px;
-	/* max-width: 250px; js自适应*/
 }
 /* 1.3 表格主体 */
 .FrichUI_Table_Content
@@ -109,14 +104,19 @@
 .FrichUI_Table_TitleRow th > div:hover
 {
 	cursor: pointer;
-	color: #222;
+/* 	padding: 2px 0px;
+	border: 1px solid #a3aabb; 
+	box-shadow: 0 2px 2px #FFF; */
+	color: #551a8b;
+	text-shadow: 0px 0px 3px #EEE;
 }
 .FrichUI_Table_DataRow
 {
 	height: 26px;
 	font-size: 12px;
 	padding: 0 0 1px 0;
-	border-bottom: 1px solid #D8D8D8;
+	border-bottom: 1px solid #D1D1D1;
+	color: #222;
 }
 .FrichUI_Table_DataRow:nth-last-child(1)
 {
@@ -133,7 +133,8 @@
 .FrichUI_Table_DataRow_active,
 .FrichUI_Table_DataRow_Select
 {
-	background: #BFB !important;
+	background: #abd8ff !important;
+	border-color: #AAA;
 }
 /* 1.2 浮动标题 */
 .FrichUI_Table_FloatTitle
@@ -171,6 +172,10 @@
 {
 	width: auto;
 }
+.FrichUI_Table_Frame .FrichUI_Table_Floated
+{
+	border-right: 1px solid #AAA;
+}
 
 /* 1.4 浮动表头 */
 .FrichUI_Table_FloatHeader
@@ -191,8 +196,6 @@
 	width: auto;
 }
 
-
-
 /* 1.5 附加功能 */
 .FrichUI_Table_Frame .FrichUI_Table_CheckColumn
 {
@@ -208,117 +211,176 @@
 {
 	text-align: left;
 }
+.FrichUI_Table_AutoWrap
+{
+	white-space: normal !important;
+	word-wrap: break-word !important;
+	width: 300px;
+	/* max-width: 250px; js自适应*/
+}
 
 /* 1.6 分页显示*/
 .FrichUI_Table_Pagination_Frame
 {
-	width:100%;
-	height:30px;
-	font-family: Helvetica, monospace, Arial, sans-serif;
-	font-size:12px;
-	border: 2px solid #9CB26A;
-	border-top: none;
-	line-height:30px;
-	text-align:left center;
+	position: static;
+	display: block;
+	width: 100%;
+	height: 32px;
+	overflow: hidden;
 }
-
-.FrichUI_Table_Pagination_active
+.FrichUI_Table_Pagination_House
 {
-	background-color:#BBB;
+	position: relative;
+	display: block;
+	height: 29px;
+	font-family: Helvetica, monospace, Arial, sans-serif;
+	font-size: 12px;
+	background: linear-gradient(to top, #e4e7ee, #FFF 55%, #FFF);
+	border: 2px solid #3d4455;
+	border-radius: 0 0 5px 5px;
+	border-top: 1px solid #a3aabb;
+	color: #444b5d;
+	font-weight: bold;
+}
+.FrichUI_Table_Pagination_Tips,
+.FrichUI_Table_Pagination_Skip
+{
+	display: block;
+	height: 29px;
+	line-height: 29px;
 }
 .FrichUI_Table_Pagination_Tips
 {
-	min-width:210px;
-	padding:0 10px;
-	display:inline;
-	float:left;
+	float: left;
+	min-width: 220px;
+	padding-left: 5px;
+}
+.FrichUI_Table_Pagination_Tips a
+{
+	padding: 0 2px;
 }
 
 .FrichUI_Table_Pagination_Select
 {
-	
-	display:inline;
-	float:none;
+	display:block;
+	margin: 0 auto;
+	width: 280px;
+	height: 100%;
 }
-
 .FrichUI_Table_Pagination_Select a
 {
-	text-align:center;
-	line-height:16px;
-	float:left;
+	cursor: pointer;
+	text-decoration: none;
 }
-
-.FrichUI_Table_Pagination_Select a:hover
+.FrichUI_Table_Pagination_Page,
+.FrichUI_Table_Pagination_decode
 {
-	color:#9CB26A;
+	display: inline-block;
+	margin: 4px 1px;
+	padding: 0 2px;
+	height: 21px;
+	line-height: 21px;
+	border-radius: 5px;
+	vertical-align: top;
 }
-
-.FrichUI_Table_Pagination_Page
+.FrichUI_Table_Pagination_First,
+.FrichUI_Table_Pagination_Previous,
+.FrichUI_Table_Pagination_Next,
+.FrichUI_Table_Pagination_Last,
+.FrichUI_Table_Pagination_First_undown,
+.FrichUI_Table_Pagination_Previous_undown,
+.FrichUI_Table_Pagination_Next_undown,
+.FrichUI_Table_Pagination_Last_undown
 {
-	margin:5px 2px;
-	float:right;
-	width:25px;
-	height:16px;
-	border:#CCC solid 1px; 
+	display: inline-block;
+	margin: 4px 1px;
+	width: 21px;
+	height: 21px;
+	border-radius: 5px;
 }
-
-
-.FrichUI_Table_Pagination_Skip
-{
-	min-width:160px;
-	margin-left:10px;
-	display:inline;
-	float:none;
-}
-
-
-.FrichUI_Table_Pagination_Frame_hidden
-{
-	display:none;
-}
-
 .FrichUI_Table_Pagination_First
 {
-	width:26px;
-	height:14px;
-	margin-top:6px;
-	background:url(../Aquamarine/image/First.png) left center no-repeat;
+	background: url(./image/tableUI.png) -1px -48px no-repeat;
 }
-
+.FrichUI_Table_Pagination_First_undown
+{
+	background: url(./image/tableUI.png) -25px -48px no-repeat;
+}
 .FrichUI_Table_Pagination_Previous
 {
-	background:url(../Aquamarine/image/Previous.png) left center no-repeat;
-	width:26px;
-	height:14px;
-	margin-top:6px;
+	background: url(./image/tableUI.png) -2px -3px no-repeat;
 }
-
+.FrichUI_Table_Pagination_Previous_undown
+{
+	background: url(./image/tableUI.png) -26px -3px no-repeat;
+}
 .FrichUI_Table_Pagination_Next
 {
-	background:url(../Aquamarine/image/Next.png) left center no-repeat;
-	width:26px;
-	height:14px;
-	margin-top:6px;
+	background: url(./image/tableUI.png) -1px -26px no-repeat;
 }
-
+.FrichUI_Table_Pagination_Next_undown
+{
+	background: url(./image/tableUI.png) -25px -26px no-repeat;
+}
 .FrichUI_Table_Pagination_Last
 {
-	background:url(../Aquamarine/image/Last.png) left center no-repeat;
-	width:26px;
-	height:14px;
-	margin-top:6px;
+	background: url(./image/tableUI.png) -1px -71px no-repeat;
 }
-
+.FrichUI_Table_Pagination_Last_undown
+{
+	background: url(./image/tableUI.png) -25px -71px no-repeat;
+}
 .FrichUI_Table_Pagination_First:hover,
 .FrichUI_Table_Pagination_Previous:hover,
 .FrichUI_Table_Pagination_Next:hover,
-.FrichUI_Table_Pagination_Last:hover
+.FrichUI_Table_Pagination_Last:hover,
+.FrichUI_Table_Pagination_Page:hover
 {
-	border:#CCC solid 1px; 
+	margin: 3px 0;
+	color: #551a8b;
+	border: 1px solid #a3aabb;
+	box-shadow: 0 2px 2px #FFF; 
+}
+
+.FrichUI_Table_Pagination_Skip
+{
+	float: right;
+	min-width: 120px;
+	padding-right: 5px;
+}
+.FrichUI_Table_Pagination_Skip_Input
+{
+	display: inline-block;
+	margin: 3px 2px;
+	width: 24px;
+	padding: 0 0 0 2px;
+	border: 1px solid #CCC;
+	border-radius: 2px 2px;
+	background-color: #FFF;
+	height: 21px;
+	outline: none;
+}
+.FrichUI_Table_Pagination_Skip_Submit
+{
+	display: inline-block;
+	margin: 3px 2px;
+	padding: 1px 3px;
+	height: 21px;
+	line-height: 21px;
+	border-radius: 5px;
+	vertical-align: top;
+}
+.FrichUI_Table_Pagination_Skip_Submit:hover
+{
+	cursor: pointer;
+	padding: 0px 2px;
+	color: #551a8b;
+	border: 1px solid #a3aabb;
+	box-shadow: 0 2px 2px #FFF;
 }
 
 /* 1.7 列表 */
-.FrichUI_Table_List1
+/* .FrichUI_Table_List1
 {
 	font-size: 12px;
 	padding: 0 0 1px 0;
@@ -326,21 +388,21 @@
 	background-color:#ccc;
 	height:40px;
 	float:none;
-}
+} */
 
 
 /* 2. 菜单组件 ************************/
-.frichUI_Menu_Frame
+.FrichUI_Menu_Frame
 {
 	display: block;
 	padding: 0;
 	background: #4c5469;
 }
-.frichUI_Menu_Frame a
+.FrichUI_Menu_Frame a
 {
 	text-decoration: none;
 }
-.frichUI_Menu_House
+.FrichUI_Menu_House
 {
 	position: static;
 	display: block;
@@ -348,7 +410,7 @@
 	padding: 0;
 	list-style-type: none;
 }
-.frichUI_Menu_Room
+.FrichUI_Menu_Room
 {
 	position: static;
 	display: block;
@@ -356,12 +418,12 @@
 	height: 35px;
 	overflow: hidden;
 }
-.frichUI_Menu_Select
+.FrichUI_Menu_Select
 {
 	background: #42495a;
 	/* background: #3d4455; */
 }
-.frichUI_Menu_Room a
+.FrichUI_Menu_Room a
 {
 	display: block;
 	padding-top: 0;
@@ -372,49 +434,49 @@
 	color: #73b1ae;
 	cursor: pointer;
 }
-.frichUI_Menu_Select a
+.FrichUI_Menu_Select a
 {
 	color: #FFF;
 }
-.frichUI_Menu_Room a:hover
+.FrichUI_Menu_Room a:hover
 {
 	color: #FFF;
 	background: #3d4455;
 }
-.frichUI_Menu_Level1 a
+.FrichUI_Menu_Level1 a
 {
 	padding-left: 10px;
 	font-size: 14px;
 	font-weight: normal;
 }
-.frichUI_Menu_Level2 a
+.FrichUI_Menu_Level2 a
 {
 	padding-left: 25px;
 	font-size: 12px;
 	font-weight: normal;
 }
-.frichUI_Menu_Level3 a
+.FrichUI_Menu_Level3 a
 {
 	padding-left: 40px;
 	font-size: 12px;
 	font-weight: normal;
 }
-.frichUI_Menu_Level4 a
+.FrichUI_Menu_Level4 a
 {
 	padding-left: 55px;
 	font-size: 12px;
 	font-weight: normal;
 }
-.frichUI_Menu_Room a
+.FrichUI_Menu_Room a
 {
 	transition: color .3s ease-out,
 	background-color .3s ease-out;
 }
-.frichUI_Menu_Room
+.FrichUI_Menu_Room
 {
 	transition: background-color .3s ease-out;
 }
-.frichUI_Node
+.FrichUI_Node
 {
 	display: block;
 	float: left;
@@ -436,7 +498,7 @@
  */
  
 /* 1. 对话框 */
-.frichUI_Cover
+.FrichUI_Cover
 {
 	position: absolute;
 	display: none;
@@ -448,7 +510,7 @@
 	z-index: 99999;
 	background-color: rgba(60, 60, 60, .5);
 }
-.frichUI_Dialog_Frame
+.FrichUI_Dialog_Frame
 {
 	position: fixed;
 	display: block;
@@ -461,7 +523,7 @@
 	box-shadow: 0 0 30px #FFF;
 }
 /* 1.1 会话头 */
-.frichUI_Dialog_Title
+.FrichUI_Dialog_Title
 {
 	position: static;
 	display: block;
@@ -469,7 +531,7 @@
 	height: 30px;
 	background: #9CB26A;
 }
-.frichUI_Dialog_Name
+.FrichUI_Dialog_Name
 {
 	position: static;
 	display: block;
@@ -482,7 +544,7 @@
 	cursor: default;
 }
 /* 1.2 会话主体 */
-.frichUI_Dialog_Content
+.FrichUI_Dialog_Content
 {
 	position: static;
 	display: block;
@@ -491,7 +553,7 @@
 	background-color: #FFF;
 }
 /* 1.3 会话域 */
-.frichUI_Dialog_Foot
+.FrichUI_Dialog_Foot
 {
 	position: static;
 	display: block;
@@ -500,9 +562,9 @@
 	background-color: #F1F1F1;
 }
 /* 1.4 事件器 */
-.frichUI_Dialog_Close,
-.frichUI_Dialog_Full,
-.frichUI_Dialog_Min
+.FrichUI_Dialog_Close,
+.FrichUI_Dialog_Full,
+.FrichUI_Dialog_Min
 {
 	position: static;
 	display: block;
@@ -510,39 +572,39 @@
 	width: 20px;
 	height: 20px;
 }
-.frichUI_Dialog_Close
+.FrichUI_Dialog_Close
 {
 	margin: 5px 5px;
 	cursor: pointer;
 	background: url(image/Button.png) -40px 0 no-repeat ;
 }
-.frichUI_Dialog_Close:hover
+.FrichUI_Dialog_Close:hover
 {
 	background: url(image/Button_hover.png) -40px 0 no-repeat ;
 }
-.frichUI_Dialog_Full
+.FrichUI_Dialog_Full
 {
 	margin: 5px 2px;
 	background: url(image/Button.png) -20px 0 no-repeat ;
 }
-.frichUI_Dialog_Full:hover
+.FrichUI_Dialog_Full:hover
 {
 	background: url(image/Button_hover.png) -20px 0 no-repeat ;
 }
-.frichUI_Dialog_Min
+.FrichUI_Dialog_Min
 {
 	margin: 5px 2px;
 	background: url(image/Button.png) 0px 0 no-repeat ;
 }
-.frichUI_Dialog_Min:hover
+.FrichUI_Dialog_Min:hover
 {
 	background: url(image/Button_hover.png) 0px 0 no-repeat ;
 }
-.frichUI_Dialog_Info,
-.frichUI_Dialog_Help,
-.frichUI_Dialog_Warning,
-.frichUI_Dialog_Success,
-.frichUI_Dialog_Error
+.FrichUI_Dialog_Info,
+.FrichUI_Dialog_Help,
+.FrichUI_Dialog_Warning,
+.FrichUI_Dialog_Success,
+.FrichUI_Dialog_Error
 {
 	position: static;
 	display: block;
@@ -551,30 +613,30 @@
 	width: 40px;
 	height: 40px;
 }
-.frichUI_Dialog_Info
+.FrichUI_Dialog_Info
 {
 	background: url(image/UI.png) 0px -4px no-repeat ;
 }
-.frichUI_Dialog_Help
+.FrichUI_Dialog_Help
 {
 	background: url(image/UI.png) 0px -51px no-repeat ;
 }
-.frichUI_Dialog_Warning
+.FrichUI_Dialog_Warning
 {
 	background: url(image/UI.png) 0px -95px no-repeat ;
 }
-.frichUI_Dialog_Success
+.FrichUI_Dialog_Success
 {
 	background: url(image/UI.png) 0px -144px no-repeat ;
 }
-.frichUI_Dialog_Error
+.FrichUI_Dialog_Error
 {
 	background: url(image/UI.png) 0px -192px no-repeat ;
 }
-.frichUI_Dialog_Yes,
-.frichUI_Dialog_No,
-.frichUI_Dialog_Confirm,
-.frichUI_Dialog_Cancle
+.FrichUI_Dialog_Yes,
+.FrichUI_Dialog_No,
+.FrichUI_Dialog_Confirm,
+.FrichUI_Dialog_Cancle
 {
 	position: static;
 	display: block;
@@ -592,37 +654,37 @@
 	color: #FFF;
 	cursor: pointer;
 }
-.frichUI_Dialog_Yes:hover,
-.frichUI_Dialog_No:hover,
-.frichUI_Dialog_Confirm:hover,
-.frichUI_Dialog_Cancle:hover
+.FrichUI_Dialog_Yes:hover,
+.FrichUI_Dialog_No:hover,
+.FrichUI_Dialog_Confirm:hover,
+.FrichUI_Dialog_Cancle:hover
 {
 	background: #3481ff;
 }
 
 /* 2. 滑动条 */
-.frichUI_FloatControle_Frame
+.FrichUI_FloatControle_Frame
 {
     position: relative;
     display: block;
     /*width: 100%; 在js中定义 */
     /*height: 100%; 在js中定义 */
 }
-.frichUI_FloatControle_Liner
+.FrichUI_FloatControle_Liner
 {
     position: absolute;
     width: 100%;
     /* top: 19px; 在js中定义 */
     /* border-bottom: 2px solid rgb(221, 221, 221); */
 }
-.frichUI_FloatControle_FloaterLiner
+.FrichUI_FloatControle_FloaterLiner
 {
     position: absolute;
     /* width: 60px; 在js中定义 */
     /* top: 19px; 在js中定义 */
     /* border-bottom: 2px solid rgb(71, 80, 89); */
 }
-.frichUI_FloatControle_Floater
+.FrichUI_FloatControle_Floater
 {
     position: absolute;
     /*width: 14px; 在js中定义 */
@@ -632,8 +694,8 @@
     /*background-color: rgb(71, 80, 89); */
     /*top: 13px; 在js中定义 */
 }
-.frichUI_FloatControle_FloaterLiner,
-.frichUI_FloatControle_Floater
+.FrichUI_FloatControle_FloaterLiner,
+.FrichUI_FloatControle_Floater
 {
     transition: width linear .2s,
         left linear .2s;

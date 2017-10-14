@@ -44,15 +44,11 @@
 			});
 			
 			var link = this.link;
-			$(document).ready(function(){
-				$("head").append(link);
-			});
+			$("head").append(link);
 		},
 		change: function(root){
 			var th = this;
-			$(ducment).ready(function(){
-				$(th.link).remove();
-			})
+			$(th.link).remove();
 			th.init(root);
 		}
 	};

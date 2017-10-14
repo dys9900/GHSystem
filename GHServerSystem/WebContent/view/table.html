@@ -7,11 +7,115 @@
 
 <script src="../lib/FrichUI/frichUI-0.1.js" type="text/javascript"></script>
 <script type="text/javascript">
-	$(document).ready(function(){
-		F.init("../lib/FrichUI/", F.FRICHUI_THEME_DARK);
-	});
-</script>
+$(document).ready(function(){
+	F.init("../lib/FrichUI/", F.FRICHUI_THEME_DARK);
+	
+	/* 初始化header、title的大小 */
+	var s = $(".FrichUI_Table_ContentTable thead th");
+	var d = $(".FrichUI_Table_FloatHeader thead th");
+	var t = $(".FrichUI_Table_FloatTitle thead th");
 
+	var first = true;
+	
+	/* 浮动事件 */
+	$("#table1 .FrichUI_Table_House").scroll(function(){
+		var fa = $(this);
+
+		if(first){
+			$.each(s, function(i, item){
+				$(d[i]).children("div").width($(item).children("div").width());
+				$(t[i]).children("div").width($(item).children("div").width());
+			});
+			first = false;
+		}
+		
+		var y = fa.scrollTop();
+		var x = fa.scrollLeft();
+		
+		var Dividing = 0.4;
+		//console.log(x + ";" + y);
+		
+		var TOP = fa.children(".FrichUI_Table_FloatTitle").height();
+		var LEFT = fa.find(".FrichUI_Table_FloatColumn thead th").eq(0).width();
+		
+		var flot = fa.find(".FrichUI_Table_FloatTitle");
+		var floc = fa.find(".FrichUI_Table_FloatColumn");
+		var floh = fa.find(".FrichUI_Table_FloatHeader");
+		
+		flot.css("top", y + "px");
+		floc.css("left", x + "px");
+		floh.css({
+			"left": x + "px",
+			"top": y + "px"
+		});
+		
+		if(y > TOP * Dividing) {
+			flot.css({
+				"visibility": "visible",
+				"opacity": 1
+			});
+		}
+		else {
+			flot.css({
+				"visibility": "hidden",
+				"opacity": 0
+			});
+		}
+	
+		if(x > LEFT * Dividing) {
+			floc.css({
+				"visibility": "visible",
+				"opacity": 1
+			});
+		}
+		else {
+			floc.css({
+				"visibility": "hidden",
+				"opacity": 0
+			});
+		}
+		
+		if(y > TOP * Dividing && x > LEFT * Dividing) {
+			floh.css({
+				"visibility": "visible",
+				"opacity": 1
+			});
+		}
+		else {
+			floh.css({
+				"visibility": "hidden",
+				"opacity": 0
+			});
+		}
+	});
+	
+	$("#table1 .FrichUI_Table_DataRow").hover(function(){
+		var rowName = $(this).prop("className").split(' ')[0];
+		var fd = $("#table1" + " ." + rowName);
+		$(fd).addClass("FrichUI_Table_DataRow_active");
+	},function(){
+		var rowName = $(this).prop("className").split(' ')[0];
+		var fd = $("." + rowName);
+		$(fd).removeClass("FrichUI_Table_DataRow_active");
+	});
+	
+	$("#table1 .FrichUI_Table_DataRow").click(function(){
+		var rowName = $(this).prop("className").split(' ')[0];
+		var fd = $("#table1" + " ." + rowName);
+		var chk = $(fd).find("input[type=checkbox]");
+		if(!$(fd).hasClass("FrichUI_Table_DataRow_Select")){
+			$(fd).addClass("FrichUI_Table_DataRow_Select");
+			chk.prop("checked", true);
+		}else {
+			console.log(chk.length);
+			chk.prop("checked", false);
+			$(fd).removeClass("FrichUI_Table_DataRow_Select");	
+		}
+	});
+	
+	
+});
+</script>
 <style type="text/css">
 #table1
 {
@@ -59,7 +163,7 @@
 								<td><div class="FrichUI_Table_c5">801001</div></td>
 								<td><div class="FrichUI_Table_c6">正考</div></td>
 								<td><div class="FrichUI_Table_c7">82</div></td>
-								<td><div class="FrichUI_Table_c8"></div></td>
+								<td><div class="FrichUI_Table_c8 FrichUI_Table_AutoWrap">操作操作操作作操作操作操作操作</div></td>
 								<td><div class="FrichUI_Table_c9"></div></td>
 							</tr>
 							<tr class="FrichUI_Table_r2 FrichUI_Table_DataRow">
@@ -190,7 +294,7 @@
 						<thead>
 							<tr class="FrichUI_Table_r0 FrichUI_Table_TitleRow">
 								<th class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"></div></th>
-								<th class="FrichUI_Table_Serial"><div class="FrichUI_Table_c1">编号</div></th>
+								<th class="FrichUI_Table_Serial"><div class="FrichUI_Table_c1">序号</div></th>
 								<th class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">姓名</div></th>
 								<th><div class="FrichUI_Table_c3">学号</div></th>
 								<th><div class="FrichUI_Table_c4">课程名</div></th>
@@ -208,7 +312,7 @@
 						<thead>
 							<tr class="FrichUI_Table_r0 FrichUI_Table_TitleRow">
 								<th class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"></div></th>
-								<th class="FrichUI_Table_Serial"><div class="FrichUI_Table_c1">编号</div></th>
+								<th class="FrichUI_Table_Serial"><div class="FrichUI_Table_c1">序号</div></th>
 								<th class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">姓名</div></th>
 							</tr>
 						</thead>
@@ -276,7 +380,7 @@
 						<thead>
 							<tr class="FrichUI_Table_r0 FrichUI_Table_TitleRow">
 								<th class="FrichUI_Table_CheckColumn"><div class="FrichUI_Table_c0"></div></th>
-								<td class="FrichUI_Table_Serial"><div class="FrichUI_Table_c1">编号</div></th>
+								<th class="FrichUI_Table_Serial"><div class="FrichUI_Table_c1">序号</div></th>
 								<th class="FrichUI_Table_Floated"><div class="FrichUI_Table_c2">姓名</div></th>
 							</tr>
 						</thead>
@@ -286,24 +390,24 @@
 		</div>
 
 		<div class="FrichUI_Table_Pagination_Frame">
-			<div class="FrichUI_Table_Pagination_Tips">当前999页/共999页 共99999999记录</div>
-			<div class="FrichUI_Table_Pagination_Select">
-				<a class="FrichUI_Table_Pagination_First "></a>
-				<a class="FrichUI_Table_Pagination_Previous "></a>
-				<a class="FrichUI_Table_Pagination_Page FrichUI_Table_Pagination_active">1</a>
-				<a class="FrichUI_Table_Pagination_Page">2</a>
-				<a class="FrichUI_Table_Pagination_Page">3</a>
-				<a class="FrichUI_Table_Pagination_Page">…</a>
-				<a class="FrichUI_Table_Pagination_Page">499</a>
-				<a class="FrichUI_Table_Pagination_Next"></a>
-				<a class="FrichUI_Table_Pagination_Last"></a>
+			<div class="FrichUI_Table_Pagination_House">
+				<div class="FrichUI_Table_Pagination_Tips">当前<a id="FrichUI_Table_Pagination_CurP">999</a>页/共<a id="FrichUI_Table_Pagination_TolP">999</a>页&nbsp;共<a id="FrichUI_Table_Pagination_TolR">99999999</a>记录</div>
+				<div class="FrichUI_Table_Pagination_Select">
+					<a class="FrichUI_Table_Pagination_First "></a>
+					<a class="FrichUI_Table_Pagination_Previous "></a>
+					<a class="FrichUI_Table_Pagination_Page FrichUI_Table_Pagination_active">1</a>
+					<a class="FrichUI_Table_Pagination_Page">2</a>
+					<a class="FrichUI_Table_Pagination_Page">3</a>
+					<a class="FrichUI_Table_Pagination_Page">…</a>
+					<a class="FrichUI_Table_Pagination_Page">499</a>
+					<a class="FrichUI_Table_Pagination_Next"></a>
+					<a class="FrichUI_Table_Pagination_Last"></a>
+				</div>
+				<div class="FrichUI_Table_Pagination_Skip">
+					跳转至<input type="text" size="2" />页
+					<input type="submit" name="submit" class="FrichUI_Table_Pagination_Config" value="确定">
+				</div>
 			</div>
-			<div class="FrichUI_Table_Pagination_Skip">
-				跳转至<input type="text" size="2" />页
-				<input type="submit" name="submit" class="FrichUI_Table_Pagination_Config" value="确定">
-			</div>
-			
-			
 		</div>
 	</div>
 	
@@ -339,7 +443,7 @@
 								<td><div class="FrichUI_Table_c5">801001</div></td>
 								<td><div class="FrichUI_Table_c6">正考</div></td>
 								<td><div class="FrichUI_Table_c7">82</div></td>
-								<td><div class="FrichUI_Table_c8"></div></td>
+								<td><div class="FrichUI_Table_c8 FrichUI_Table_AutoWrap">操作操作操作操作操作操作操作</div></td>
 								<td><div class="FrichUI_Table_c9"></div></td>
 							</tr>
 							<tr class="FrichUI_Table_r2 FrichUI_Table_DataRow">
@@ -564,27 +668,34 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="FrichUI_Table_Pagination_Frame">
-			<div class="FrichUI_Table_Pagination_Tips">当前999页/共999页 共99999999记录</div>
-			<div class="FrichUI_Table_Pagination_Select">
-				<a class="FrichUI_Table_Pagination_First "></a>
-				<a class="FrichUI_Table_Pagination_Previous "></a>
-				<a class="FrichUI_Table_Pagination_Page FrichUI_Table_Pagination_active">1</a>
-				<a class="FrichUI_Table_Pagination_Page">2</a>
-				<a class="FrichUI_Table_Pagination_Page">3</a>
-				<a class="FrichUI_Table_Pagination_Page">…</a>
-				<a class="FrichUI_Table_Pagination_Page">499</a>
-				<a class="FrichUI_Table_Pagination_Next"></a>
-				<a class="FrichUI_Table_Pagination_Last"></a>
+			<div class="FrichUI_Table_Pagination_House">
+				<div class="FrichUI_Table_Pagination_Tips">当前<a id="FrichUI_Table_Pagination_CurP">999</a>页/共<a id="FrichUI_Table_Pagination_TolP">999</a>页&nbsp;共<a id="FrichUI_Table_Pagination_TolR">99999999</a>记录</div>
+				<div class="FrichUI_Table_Pagination_Skip">
+					至<input class="FrichUI_Table_Pagination_Skip_Input" type="text" />页
+					<a class="FrichUI_Table_Pagination_Skip_Submit">跳转</a>
+				</div>
+				<div class="FrichUI_Table_Pagination_Select">
+					<a class="FrichUI_Table_Pagination_First_undown"></a>
+					<a class="FrichUI_Table_Pagination_Previous_undown"></a>
+					<a class="FrichUI_Table_Pagination_Page">488</a>
+					<a class="FrichUI_Table_Pagination_Page">489</a>
+					<a class="FrichUI_Table_Pagination_Page">490</a>
+					<a class="FrichUI_Table_Pagination_decode">…</a>
+					<a class="FrichUI_Table_Pagination_Page">498</a>
+					<a class="FrichUI_Table_Pagination_Page">499</a>
+					<a class="FrichUI_Table_Pagination_Next"></a>
+					<a class="FrichUI_Table_Pagination_Last"></a>
+				</div>
 			</div>
-			<div class="FrichUI_Table_Pagination_Skip">
-				跳转至<input type="text" size="2" />页
-				<input type="submit" name="submit" class="FrichUI_Table_Pagination_Config" value="确定">
-			</div>
-			
-			
 		</div>
 	</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		
+	});
+</script>
 </body>
 </html>
